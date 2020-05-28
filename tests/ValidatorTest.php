@@ -5,6 +5,7 @@ namespace YaFou\Validator\Tests;
 use PHPUnit\Framework\TestCase;
 use YaFou\Validator\Rule\NotBlankRule;
 use YaFou\Validator\Rule\NotNullRule;
+use YaFou\Validator\Rule\RangeRule;
 use YaFou\Validator\Validator;
 use YaFou\Validator\Violation;
 
@@ -48,6 +49,19 @@ class ValidatorTest extends TestCase
         $this->assertEquals(
             [new Violation('This value must not be blank')],
             self::$validator->validate('', [new NotNullRule(), new NotBlankRule()])
+        );
+    }
+
+    public function testValueIsNotSupported(): void
+    {
+        $this->assertEmpty(self::$validator->validate(null, [new RangeRule(-1)]));
+    }
+
+    public function testValueIsSupported(): void
+    {
+        $this->assertEquals(
+            [new Violation('0 must be greater or equal than 1')],
+            self::$validator->validate(0, [new RangeRule(1)])
         );
     }
 }
