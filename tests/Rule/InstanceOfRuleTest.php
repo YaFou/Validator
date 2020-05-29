@@ -49,7 +49,7 @@ class InstanceOfRuleTest extends TestCase
 
     public function provideTypes(): Generator
     {
-        foreach(self::TYPES as $type) {
+        foreach (self::TYPES as $type) {
             yield [$type];
         }
     }
@@ -67,7 +67,8 @@ class InstanceOfRuleTest extends TestCase
 
         $this->assertViolationMessageSame(
             sprintf(
-                'This value must be an instance of "%s"', $type
+                'This value must be an instance of "%s"',
+                $type
             ),
             (new InstanceOfRule($type))->validate($value)
         );
@@ -94,18 +95,19 @@ class InstanceOfRuleTest extends TestCase
             stdClass::class => new stdClass()
         ];
 
-        foreach(self::TYPES as $type) {
-            foreach($values as $valueType => $value) {
+        foreach (self::TYPES as $type) {
+            foreach ($values as $valueType => $value) {
                 $realType = 'boolean' === $type ? 'bool' : $type;
 
-                if((function_exists("is_$realType") && ("is_$realType")($value)) 
-                    || (('object' === $type && stdClass::class === $valueType) 
+                if (
+                    (function_exists("is_$realType") && ("is_$realType")($value))
+                    || (('object' === $type && stdClass::class === $valueType)
                     || (stdClass::class === $type && 'object' === $valueType)                )
                 ) {
                     continue;
                 }
 
-                if($type !== $valueType) {
+                if ($type !== $valueType) {
                     yield [$type, $value];
                 }
             }
@@ -126,53 +128,53 @@ class InstanceOfRuleTest extends TestCase
 
     public function provideValidValues(): Generator
     {
-        foreach(self::TYPES as $type) {
-            if('string' === $type) {
+        foreach (self::TYPES as $type) {
+            if ('string' === $type) {
                 yield [$type, ''];
             }
 
-            if('bool' === $type || 'boolean' === $type) {
+            if ('bool' === $type || 'boolean' === $type) {
                 yield [$type, false];
             }
 
-            if('int' === $type || 'integer' === $type) {
+            if ('int' === $type || 'integer' === $type) {
                 yield [$type, 0];
             }
 
-            if('float' === $type || 'double' === $type) {
+            if ('float' === $type || 'double' === $type) {
                 yield [$type, 0.0];
             }
 
-            if('numeric' === $type) {
+            if ('numeric' === $type) {
                 yield [$type, 0];
                 yield [$type, 0.0];
             }
 
-            if('array' === $type) {
+            if ('array' === $type) {
                 yield [$type, []];
             }
 
-            if('null' === $type) {
+            if ('null' === $type) {
                 yield [$type, null];
             }
 
-            if('callable' === $type) {
+            if ('callable' === $type) {
                 yield [$type, function () {
                 }];
             }
 
-            if('scalar' === $type) {
+            if ('scalar' === $type) {
                 yield [$type, false];
                 yield [$type, 0];
                 yield [$type, 0.0];
                 yield [$type, ''];
             }
 
-            if('resource' === $type) {
+            if ('resource' === $type) {
                 yield [$type, fopen('php://stdin', 'r')];
             }
 
-            if('object' === $type || stdClass::class === $type) {
+            if ('object' === $type || stdClass::class === $type) {
                 yield [$type, new stdClass()];
             }
         }

@@ -11,7 +11,7 @@ class Violation
     {
         $message = $this->template = $template;
 
-        foreach($variables as $key => $value) {
+        foreach ($variables as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message);
         }
 

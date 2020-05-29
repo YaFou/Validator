@@ -47,7 +47,7 @@ class LengthRuleTest extends TestCase
         yield [null];
         yield [0];
         yield [0.0];
-        yield [new stdClass];
+        yield [new stdClass()];
         yield [[]];
         yield [false];
     }
@@ -66,7 +66,7 @@ class LengthRuleTest extends TestCase
 
 
         $this->assertViolationMessageSame(
-            '"" length (0 characters) must be greater or equal than 1', 
+            '"" length (0 characters) must be greater or equal than 1',
             (new LengthRule(1, 2))->validate('')
         );
     }

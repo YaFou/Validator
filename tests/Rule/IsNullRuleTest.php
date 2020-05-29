@@ -7,11 +7,6 @@ use YaFou\Validator\Tests\TestCase;
 
 class IsNullRuleTest extends TestCase
 {
-    /**
-     * 
-     *
-     * @var IsNullRule
-     */
     private static $rule;
 
     public static function setUpBeforeClass(): void
@@ -19,7 +14,7 @@ class IsNullRuleTest extends TestCase
         self::$rule = new IsNullRule();
     }
 
-    public function TestValueIsNull(): void
+    public function testValueIsNull(): void
     {
         $this->assertNull(self::$rule->validate(null));
     }

@@ -15,11 +15,11 @@ class RangeRule extends AbstractRule
 
     public function __construct(float $min = null, float $max = null)
     {
-        if(null === $min && null === $max) {
+        if (null === $min && null === $max) {
             throw new InvalidArgumentException('At least one variable (min or max) must not be null');
         }
 
-        if(null !== $min && null !== $max && $min >= $max) {
+        if (null !== $min && null !== $max && $min >= $max) {
             throw new InvalidArgumentException(
                 sprintf(
                     'The minimum (%s) value must be less than the maximum (%s)',
@@ -40,11 +40,11 @@ class RangeRule extends AbstractRule
 
     public function validate($value): ?Violation
     {
-        if(null !== $this->min && $this->min > $value) {
+        if (null !== $this->min && $this->min > $value) {
             return new Violation(self::TEMPLATE_GREATER, ['value' => $value, 'min' => $this->min]);
         }
             
-        if(null !== $this->max && $this->max < $value) {
+        if (null !== $this->max && $this->max < $value) {
             return new Violation(self::TEMPLATE_LESS, ['value' => $value, 'max' => $this->max]);
         }
 

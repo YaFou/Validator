@@ -10,9 +10,9 @@ use YaFou\Validator\Tests\TestCase;
 class IsFalseRuleTest extends TestCase
 {
     /**
-     * 
      *
-     * @var IsFalseRule 
+     *
+     * @var IsFalseRule
      */
     private static $rule;
 
@@ -39,7 +39,7 @@ class IsFalseRuleTest extends TestCase
         yield [[]];
         yield [0];
         yield [0.0];
-        yield [new stdClass];
+        yield [new stdClass()];
     }
 
     /**

@@ -12,9 +12,9 @@ use YaFou\Validator\Violation;
 class ValidatorTest extends TestCase
 {
     /**
-     * 
      *
-     * @var Validator 
+     *
+     * @var Validator
      */
     private static $validator;
 

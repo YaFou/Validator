@@ -14,7 +14,7 @@ class LengthRule extends RangeRule
     {
         parent::__construct($min, $max);
 
-        if(0 > $min) {
+        if (0 > $min) {
             throw new InvalidArgumentException(sprintf('The minimum length (%s) value must be greater than 0', $min));
         }
     }
@@ -29,15 +29,15 @@ class LengthRule extends RangeRule
         $length = strlen($value);
         $parentViolation = parent::validate($length);
 
-        if(null === $parentViolation) {
+        if (null === $parentViolation) {
             return null;
         }
 
-        if(parent::TEMPLATE_GREATER === $parentViolation->getTemplate()) {
+        if (parent::TEMPLATE_GREATER === $parentViolation->getTemplate()) {
             return new Violation(self::TEMPLATE_GREATER, ['value' => $value, 'length' => $length, 'min' => $this->min]);
         }
 
-        if(parent::TEMPLATE_LESS === $parentViolation->getTemplate()) {
+        if (parent::TEMPLATE_LESS === $parentViolation->getTemplate()) {
             return new Violation(self::TEMPLATE_LESS, ['value' => $value, 'length' => $length, 'max' => $this->max]);
         }
 

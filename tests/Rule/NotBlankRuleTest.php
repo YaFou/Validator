@@ -10,9 +10,9 @@ use YaFou\Validator\Tests\TestCase;
 class NotBlankRuleTest extends TestCase
 {
     /**
-     * 
      *
-     * @var NotBlankRule 
+     *
+     * @var NotBlankRule
      */
     private static $rule;
 

@@ -8,13 +8,13 @@ class Validator implements ValidatorInterface
     {
         $violations = [];
 
-        foreach($rules as $rule) {
-            if(!$rule->supports($value)) {
+        foreach ($rules as $rule) {
+            if (!$rule->supports($value)) {
                 continue;
             }
 
-            if(null !== $violation = $rule->validate($value)) {
-                if(!in_array($violation, $violations)) {
+            if (null !== $violation = $rule->validate($value)) {
+                if (!in_array($violation, $violations)) {
                     $violations[] = $violation;
                 }
             }

@@ -10,9 +10,9 @@ use YaFou\Validator\Tests\TestCase;
 class EmailRuleTest extends TestCase
 {
     /**
-     * 
      *
-     * @var EmailRule 
+     *
+     * @var EmailRule
      */
     private static $rule;
 

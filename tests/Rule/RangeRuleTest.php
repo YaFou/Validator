@@ -46,7 +46,7 @@ class RangeRuleTest extends TestCase
     {
         yield [null];
         yield [''];
-        yield [new stdClass];
+        yield [new stdClass()];
         yield [[]];
         yield [false];
     }

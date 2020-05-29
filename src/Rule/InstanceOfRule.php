@@ -18,15 +18,11 @@ class InstanceOfRule extends AbstractRule
     {
         $type = 'boolean' === $type ? 'bool' : $type;
 
-        if(function_exists("is_$type")) {
+        if (function_exists("is_$type")) {
             $this->function = self::TYPE;
-        }
-
-        else if(class_exists($type)) {
+        } elseif (class_exists($type)) {
             $this->function = self::CLASS_TYPE;
-        }
-
-        else {
+        } else {
             throw new InvalidArgumentException(sprintf('The type "%s" does not exists', $type));
         }
 
@@ -35,7 +31,8 @@ class InstanceOfRule extends AbstractRule
 
     public function validate($value): ?Violation
     {
-        if((self::TYPE === $this->function && !("is_{$this->type}")($value)) 
+        if (
+            (self::TYPE === $this->function && !("is_{$this->type}")($value))
             || (self::CLASS_TYPE === $this->function && (!is_object($value) || get_class($value) !== $this->type))
         ) {
             return new Violation(self::TEMPLATE, ['type' => $this->type]);

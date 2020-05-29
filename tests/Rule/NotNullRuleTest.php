@@ -8,9 +8,9 @@ use YaFou\Validator\Tests\TestCase;
 class NotNullRuleTest extends TestCase
 {
     /**
-     * 
      *
-     * @var NotNullRule 
+     *
+     * @var NotNullRule
      */
     private static $rule;
 
