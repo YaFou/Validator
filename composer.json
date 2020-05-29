@@ -2,10 +2,33 @@
     "name": "yafou/validator",
     "description": "A simple validator to test variables",
     "version": "0.1.0",
-    "require": {},
+    "authors": [
+        {
+            "name": "Yannis Foucher",
+            "homepage": "https://github.com/YaFou",
+            "role": "Owner"
+        }
+    ],
+    "homepage": "https://github.com/YaFou/Validator",
+    "support": {
+        "issues": "https://github.com/YaFou/Validator/issues",
+        "source": "https://github.com/YaFou/Validator"
+    },
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^9",
-        "squizlabs/php_codesniffer": "^3.5"
+        "phpunit/phpunit": "^7 || ^8 || ^9",
+        "squizlabs/php_codesniffer": "^3.5",
+        "codedungeon/phpunit-result-printer": "^0.27.0"
     },
     "autoload": {
         "psr-4": {
