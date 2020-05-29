@@ -39,7 +39,7 @@ class InstanceOfRuleTest extends TestCase
     /**
      * @dataProvider provideTypes
      *
-     * @param string $type
+     * @param  string $type
      * @return void
      */
     public function testTypeWorks(string $type): void
@@ -57,16 +57,18 @@ class InstanceOfRuleTest extends TestCase
     /**
      * @dataProvider provideInvalidValues
      *
-     * @param string $type
-     * @param string $value
+     * @param  string $type
+     * @param  string $value
      * @return void
      */
     public function testValidateWithAnInvalidValue(string $type, $value): void
     {
         $type = 'boolean' === $type ? 'bool' : $type;
 
-        $this->assertViolationMessageSame(sprintf(
-            'This value must be an instance of "%s"', $type),
+        $this->assertViolationMessageSame(
+            sprintf(
+                'This value must be an instance of "%s"', $type
+            ),
             (new InstanceOfRule($type))->validate($value)
         );
     }
@@ -84,7 +86,8 @@ class InstanceOfRuleTest extends TestCase
             'numeric' => 2,
             'array' => [],
             'null' => null,
-            'callable' => function() {},
+            'callable' => function () {
+            },
             'scalar' => false,
             'resource' => fopen('php://stdin', ''),
             'object' => new stdClass(),
@@ -95,12 +98,9 @@ class InstanceOfRuleTest extends TestCase
             foreach($values as $valueType => $value) {
                 $realType = 'boolean' === $type ? 'bool' : $type;
 
-                if(
-                    (function_exists("is_$realType") && ("is_$realType")($value)) ||
-                    (
-                        ('object' === $type && stdClass::class === $valueType) ||
-                        (stdClass::class === $type && 'object' === $valueType)
-                    )
+                if((function_exists("is_$realType") && ("is_$realType")($value)) 
+                    || (('object' === $type && stdClass::class === $valueType) 
+                    || (stdClass::class === $type && 'object' === $valueType)                )
                 ) {
                     continue;
                 }
@@ -115,8 +115,8 @@ class InstanceOfRuleTest extends TestCase
     /**
      * @dataProvider provideValidValues
      *
-     * @param string $type
-     * @param string $value
+     * @param  string $type
+     * @param  string $value
      * @return void
      */
     public function testValidateWithAValidValue(string $type, $value): void
@@ -157,7 +157,8 @@ class InstanceOfRuleTest extends TestCase
             }
 
             if('callable' === $type) {
-                yield [$type, function(){}];
+                yield [$type, function () {
+                }];
             }
 
             if('scalar' === $type) {

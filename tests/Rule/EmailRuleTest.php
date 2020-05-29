@@ -9,7 +9,11 @@ use YaFou\Validator\Tests\TestCase;
 
 class EmailRuleTest extends TestCase
 {
-    /** @var EmailRule */
+    /**
+     * 
+     *
+     * @var EmailRule 
+     */
     private static $rule;
 
     public static function setUpBeforeClass(): void
@@ -51,7 +55,7 @@ class EmailRuleTest extends TestCase
     /**
      * @dataProvider provideInvalidValues
      *
-     * @param [type] $value
+     * @param  [type] $value
      * @return void
      */
     public function testValidateWithAnInvalidValue($value): void

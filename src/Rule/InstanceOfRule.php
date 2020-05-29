@@ -35,9 +35,8 @@ class InstanceOfRule extends AbstractRule
 
     public function validate($value): ?Violation
     {
-        if(
-            (self::TYPE === $this->function && !("is_{$this->type}")($value)) ||
-            (self::CLASS_TYPE === $this->function && (!is_object($value) || get_class($value) !== $this->type))
+        if((self::TYPE === $this->function && !("is_{$this->type}")($value)) 
+            || (self::CLASS_TYPE === $this->function && (!is_object($value) || get_class($value) !== $this->type))
         ) {
             return new Violation(self::TEMPLATE, ['type' => $this->type]);
         }
