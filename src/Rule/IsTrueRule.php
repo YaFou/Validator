@@ -4,9 +4,9 @@ namespace YaFou\Validator\Rule;
 
 use YaFou\Validator\Violation;
 
-class NotNullRule extends IsNullRule
+class IsTrueRule extends IsFalseRule
 {
-    private const MESSAGE = 'This value must not be null';
+    private const MESSAGE = 'This value must be true';
 
     public function validate($value): ?Violation
     {

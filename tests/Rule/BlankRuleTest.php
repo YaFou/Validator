@@ -4,21 +4,21 @@ namespace YaFou\Validator\Tests\Rule;
 
 use Generator;
 use stdClass;
-use YaFou\Validator\Rule\NotBlankRule;
+use YaFou\Validator\Rule\BlankRule;
 use YaFou\Validator\Tests\TestCase;
 
-class NotBlankRuleTest extends TestCase
+class BlankRuleTest extends TestCase
 {
     /**
      * 
      *
-     * @var NotBlankRule 
+     * @var BlankRule 
      */
     private static $rule;
 
     public static function setUpBeforeClass(): void
     {
-        self::$rule = new NotBlankRule();
+        self::$rule = new BlankRule();
     }
 
     /**
@@ -60,16 +60,16 @@ class NotBlankRuleTest extends TestCase
 
     public function testValueIsNull(): void
     {
-        $this->assertViolationMessageSame('This value must not be null', self::$rule->validate(null));
+        $this->assertNull(self::$rule->validate(null));
     }
 
     public function testValueIsEmpty(): void
     {
-        $this->assertViolationMessageSame('This value must not be blank', self::$rule->validate(''));
+        $this->assertNull(self::$rule->validate(''));
     }
 
     public function testValueIsNotEmpty(): void
     {
-        $this->assertNull(self::$rule->validate('string'));
+        $this->assertViolationMessageSame('This value must be blank', self::$rule->validate('string'));
     }
 }

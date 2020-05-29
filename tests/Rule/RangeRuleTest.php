@@ -4,10 +4,9 @@ namespace YaFou\Validator\Tests\Rule;
 
 use Generator;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use stdClass;
 use YaFou\Validator\Rule\RangeRule;
-use YaFou\Validator\Violation;
+use YaFou\Validator\Tests\TestCase;
 
 class RangeRuleTest extends TestCase
 {
@@ -71,14 +70,14 @@ class RangeRuleTest extends TestCase
 
     public function testValueIsLessThanMin(): void
     {
-        $this->assertEquals(new Violation('0 must be greater or equal than 1'), (new RangeRule(1))->validate(0));
-        $this->assertEquals(new Violation('0 must be greater or equal than 1'), (new RangeRule(1, 2))->validate(0));
+        $this->assertViolationMessageSame('0 must be greater or equal than 1', (new RangeRule(1))->validate(0));
+        $this->assertViolationMessageSame('0 must be greater or equal than 1', (new RangeRule(1, 2))->validate(0));
     }
 
     public function testValueIsGreaterThanMax(): void
     {
-        $this->assertEquals(new Violation('1 must be less or equal than 0'), (new RangeRule(null, 0))->validate(1));
-        $this->assertEquals(new Violation('1 must be less or equal than 0'), (new RangeRule(-1, 0))->validate(1));
+        $this->assertViolationMessageSame('1 must be less or equal than 0', (new RangeRule(null, 0))->validate(1));
+        $this->assertViolationMessageSame('1 must be less or equal than 0', (new RangeRule(-1, 0))->validate(1));
     }
 
     public function testValueIsEqualThanMin(): void

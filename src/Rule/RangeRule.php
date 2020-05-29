@@ -7,11 +7,11 @@ use YaFou\Validator\Violation;
 
 class RangeRule extends AbstractRule
 {
-    private const MESSAGE_GREATER = '%s must be greater or equal than %s';
-    private const MESSAGE_LESS = '%s must be less or equal than %s';
+    protected const TEMPLATE_GREATER = '{value} must be greater or equal than {min}';
+    protected const TEMPLATE_LESS = '{value} must be less or equal than {max}';
 
-    private $min;
-    private $max;
+    protected $min;
+    protected $max;
 
     public function __construct(float $min = null, float $max = null)
     {
@@ -41,11 +41,11 @@ class RangeRule extends AbstractRule
     public function validate($value): ?Violation
     {
         if(null !== $this->min && $this->min > $value) {
-            return new Violation(sprintf(self::MESSAGE_GREATER, $value, $this->min));
+            return new Violation(self::TEMPLATE_GREATER, ['value' => $value, 'min' => $this->min]);
         }
             
         if(null !== $this->max && $this->max < $value) {
-            return new Violation(sprintf(self::MESSAGE_LESS, $value, $this->max));
+            return new Violation(self::TEMPLATE_LESS, ['value' => $value, 'max' => $this->max]);
         }
 
         return null;

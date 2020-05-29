@@ -1,10 +1,9 @@
 <?php
 
-namespace YaFou\Validator\Tests;
+namespace YaFou\Validator\Tests\Rule;
 
-use PHPUnit\Framework\TestCase;
 use YaFou\Validator\Rule\NotNullRule;
-use YaFou\Validator\Violation;
+use YaFou\Validator\Tests\TestCase;
 
 class NotNullRuleTest extends TestCase
 {
@@ -20,12 +19,12 @@ class NotNullRuleTest extends TestCase
         self::$rule = new NotNullRule();
     }
 
-    public function testNullValue(): void
+    public function testValueIsNull(): void
     {
-        $this->assertEquals(new Violation('This value must not be null'), self::$rule->validate(null));
+        $this->assertViolationMessageSame('This value must not be null', self::$rule->validate(null));
     }
 
-    public function testGoodValue(): void
+    public function testValueIsNotNull(): void
     {
         $this->assertNull(self::$rule->validate(false));
     }

@@ -60,7 +60,7 @@ class ValidatorTest extends TestCase
     public function testValueIsSupported(): void
     {
         $this->assertEquals(
-            [new Violation('0 must be greater or equal than 1')],
+            [new Violation('{value} must be greater or equal than {min}', ['value' => 0, 'min' => 1])],
             self::$validator->validate(0, [new RangeRule(1)])
         );
     }

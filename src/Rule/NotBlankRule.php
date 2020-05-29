@@ -6,6 +6,8 @@ use YaFou\Validator\Violation;
 
 class NotBlankRule extends NotNullRule
 {
+    use NullOrStringSupport;
+
     private const MESSAGE = 'This value must not be blank';
 
     public function validate($value): ?Violation
