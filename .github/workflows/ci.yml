@@ -16,8 +16,8 @@ jobs:
     # STRATEGY
     strategy:
       matrix:
-        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
         php-versions: ['7.1', '7.2', '7.3', '7.4']
+        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
     steps:
@@ -69,11 +69,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache-directory.outputs.dir }}
-          key: ${{ matrix.operating-systems }}_php${{ matrix.php-versions }}_composer_${{ hashFiles('**/composer.lock') }}
+          key: ubuntu-latest_php7.4_composer_${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ matrix.operating-systems }}_php${{ matrix.php-versions }}_composer
-            ${{ matrix.operating-systems }}_php${{ matrix.php-versions }}
-            ${{ matrix.operating-systems }}
+            ubuntu-latest_php7.4_composer
+            ubuntu-latest_php7.4
+            ubuntu-latest
         id: composer-cache
       - name: Install dependencies
         run: composer update --no-interaction --no-progress --no-suggest

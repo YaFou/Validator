@@ -8,14 +8,10 @@ use YaFou\Validator\Rule\NotNullRule;
 use YaFou\Validator\Rule\RangeRule;
 use YaFou\Validator\Validator;
 use YaFou\Validator\Violation;
+use YaFou\Validator\ViolationCollection;
 
 class ValidatorTest extends TestCase
 {
-    /**
-     *
-     *
-     * @var Validator
-     */
     private static $validator;
 
     public static function setUpBeforeClass(): void
@@ -26,7 +22,7 @@ class ValidatorTest extends TestCase
     public function testOneRuleWithFailure(): void
     {
         $this->assertEquals(
-            [new Violation('This value must not be null')],
+            new ViolationCollection([new Violation('This value must not be null')]),
             self::$validator->validate(null, [new NotNullRule()])
         );
     }
@@ -39,7 +35,7 @@ class ValidatorTest extends TestCase
     public function testTwoRulesWithFailure(): void
     {
         $this->assertEquals(
-            [new Violation('This value must not be null')],
+            new ViolationCollection([new Violation('This value must not be null')]),
             self::$validator->validate(null, [new NotNullRule(), new NotBlankRule()])
         );
     }
@@ -47,7 +43,7 @@ class ValidatorTest extends TestCase
     public function testTwoRulesWithOneSuccessAndOneFailure(): void
     {
         $this->assertEquals(
-            [new Violation('This value must not be blank')],
+            new ViolationCollection([new Violation('This value must not be blank')]),
             self::$validator->validate('', [new NotNullRule(), new NotBlankRule()])
         );
     }
@@ -60,7 +56,10 @@ class ValidatorTest extends TestCase
     public function testValueIsSupported(): void
     {
         $this->assertEquals(
-            [new Violation('{value} must be greater or equal than {min}', ['value' => 0, 'min' => 1])],
+            new ViolationCollection([new Violation(
+                '{value} must be greater or equal than {min}',
+                ['value' => 0, 'min' => 1]
+            )]),
             self::$validator->validate(0, [new RangeRule(1)])
         );
     }

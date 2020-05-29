@@ -4,5 +4,5 @@ namespace YaFou\Validator;
 
 interface ValidatorInterface
 {
-    public function validate($value, array $rules): array;
+    public function validate($value, array $rules): ViolationCollection;
 }

@@ -4,7 +4,7 @@ namespace YaFou\Validator;
 
 class Validator implements ValidatorInterface
 {
-    public function validate($value, array $rules): array
+    public function validate($value, array $rules): ViolationCollection
     {
         $violations = [];
 
@@ -20,6 +20,6 @@ class Validator implements ValidatorInterface
             }
         }
 
-        return $violations;
+        return new ViolationCollection($violations);
     }
 }

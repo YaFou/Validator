@@ -16,8 +16,8 @@ jobs:
     # STRATEGY
     strategy:
       matrix:
-        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
         php-versions: ['8.0']
+        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       # SETUP
